@@ -5,7 +5,7 @@ exports.defaultProduction = defaultProduction;
 exports.normalizeProduction = normalizeProduction;
 exports.productionDirection = productionDirection;
 exports.productionReview = productionReview;
-exports.DEFAULT_EDITION = 'kids-3d';
+exports.DEFAULT_EDITION = 'biblical-period';
 exports.EDITION_LABEL = exports.DEFAULT_EDITION === 'kids-3d' ? "Children's 3D · ages 5–8" : 'Biblical Cinema';
 function defaultProduction() {
     return { edition: exports.DEFAULT_EDITION, storyMode: 'original', era: '', region: '', passage: '', translation: '', interpretation: '' };

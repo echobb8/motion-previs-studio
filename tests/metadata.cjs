@@ -19,8 +19,8 @@ for (const name of ['react', 'react-dom', 'three', '@huggingface/transformers', 
   assert.equal(pkg.dependencies[name], undefined, `${name} must not be copied as a production Node dependency`);
 }
 assert.deepEqual(Object.keys(pkg.dependencies), ['archiver']);
-assert.equal(pkg.build.appId, 'studio.motionprevis.app.v4.kids3d', 'edition app identity must be isolated');
-assert.equal(pkg.build.productName, 'Motion Previs Studio v4 Kids 3D', 'edition product name must be isolated');
+assert.equal(pkg.build.appId, 'studio.motionprevis.app.v4.biblical', 'edition app identity must be isolated');
+assert.equal(pkg.build.productName, 'Motion Previs Studio v4 Biblical Cinema', 'edition product name must be isolated');
 assert.deepEqual(metadataFor(pkg).distribution, null);
 assert.deepEqual(
   metadataFor(pkg, { extraMetadata: { distribution: { appId: 'example.community', configFolder: 'Example/control' } } }).distribution,

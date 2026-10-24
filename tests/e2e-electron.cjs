@@ -23,8 +23,8 @@ const blockoutConfigDir = path.join(e2eRoot, 'Blockout control');
 const testHome = path.join(e2eRoot, 'home');
 const testAppData = path.join(e2eRoot, 'AppData', 'Roaming');
 const liveBlockoutConfigDir = process.platform === 'win32'
-  ? path.join(testAppData, 'blockout-kids-3d')
-  : path.join(testHome, '.config', 'blockout-kids-3d');
+  ? path.join(testAppData, 'blockout-biblical-period')
+  : path.join(testHome, '.config', 'blockout-biblical-period');
 const controlDiscoveryFile = configPaths.motionDiscoveryFile({ env: { MOTION_PREVIS_CONFIG_DIR: controlConfigDir } });
 const samplePath = process.env.MPS_SAMPLE || path.join(e2eRoot, 'source clips', 'sample clip.mp4');
 const planningData = {

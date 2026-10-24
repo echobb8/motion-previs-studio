@@ -1,5 +1,5 @@
 {
-  "name": "motion-previs-studio-kids-3d",
+  "name": "motion-previs-studio-biblical-period",
   "version": "4.1.0",
   "description": "Motion Previs Studio desktop app for video pose/depth/camera previs extraction and AI/Blender export bundles.",
   "author": "Sam Wasserman (Wasserman Productions / Wasserman.ai)",
@@ -76,8 +76,8 @@
     "wait-on": "^8.0.1"
   },
   "build": {
-    "appId": "studio.motionprevis.app.v4.kids3d",
-    "productName": "Motion Previs Studio v4 Kids 3D",
+    "appId": "studio.motionprevis.app.v4.biblical",
+    "productName": "Motion Previs Studio v4 Biblical Cinema",
     "artifactName": "Motion-Previs-Studio-${version}-${os}-${arch}.${ext}",
     "npmRebuild": false,
     "directories": {
@@ -150,8 +150,8 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Motion Previs Studio v4 Kids 3D"
+      "shortcutName": "Motion Previs Studio v4 Biblical Cinema"
     }
   },
-  "productName": "Motion Previs Studio v4 Kids 3D"
+  "productName": "Motion Previs Studio v4 Biblical Cinema"
 }

@@ -13,7 +13,7 @@ export function motionDiscoveryFile(appPackage, options = {}) {
     if (appPackage.distribution?.configFolder) {
       return path.win32.join(appData, appPackage.distribution.configFolder, 'control.json');
     }
-    return path.win32.join(appData, 'Motion Previs Studio Kids 3D', 'v4', 'control.json');
+    return path.win32.join(appData, 'Motion Previs Studio Biblical Cinema', 'v4', 'control.json');
   }
-  return path.posix.join(home, '.config', 'motion-previs-kids-3d', 'control.json');
+  return path.posix.join(home, '.config', 'motion-previs-biblical-period', 'control.json');
 }

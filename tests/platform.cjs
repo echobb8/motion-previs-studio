@@ -91,13 +91,13 @@ try {
   const winOptions = { platform: 'win32', env: { APPDATA: 'D:\\Profiles\\Alice\\Roaming' }, home: 'C:\\Users\\Alice' };
   assert.equal(
     config.motionDiscoveryFile(winOptions),
-    'D:\\Profiles\\Alice\\Roaming\\Motion Previs Studio Kids 3D\\v4\\control.json'
+    'D:\\Profiles\\Alice\\Roaming\\Motion Previs Studio Biblical Cinema\\v4\\control.json'
   );
   assert.equal(
     config.motionDiscoveryFile({ ...winOptions, env: { MOTION_PREVIS_CONFIG_DIR: 'E:\\mps-ci' } }),
     'E:\\mps-ci\\control.json'
   );
-  assert.ok(config.blockoutControlFiles(winOptions).some((file) => file.endsWith('blockout-kids-3d\\control.json')));
+  assert.ok(config.blockoutControlFiles(winOptions).some((file) => file.endsWith('blockout-biblical-period\\control.json')));
 
   console.log('verify:platform: OK');
 } finally {
