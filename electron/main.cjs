@@ -1,3 +1,4 @@
+const { productionDirection, productionReview, normalizeProduction } = require('./production.cjs');
 // Modified for cross-platform Windows support in 2026; see MODIFICATIONS.md.
 
 const { app, BrowserWindow, dialog, ipcMain, shell, protocol, Menu } = require('electron');
@@ -597,6 +598,8 @@ async function savePoseArtifacts(payload) {
   fs.writeFileSync(comfyPath, JSON.stringify(comfyManifest(payload), null, 2));
   fs.writeFileSync(seedancePath, seedancePrompt(payload));
   fs.writeFileSync(promptPackPath, promptPack(payload));
+  fs.writeFileSync(path.join(analysisDir, 'production.json'), JSON.stringify(normalizeProduction(payload.planningData?.production), null, 2));
+  fs.writeFileSync(path.join(analysisDir, 'production-review.md'), productionReview(payload.planningData?.production).map((item) => `- [ ] ${item}`).join(os.EOL));
   fs.writeFileSync(shotBiblePath, JSON.stringify(payload.planningData?.shotBible || defaultShotBible(payload), null, 2));
   fs.writeFileSync(qualityReportPath, JSON.stringify(payload.planningData?.qualityReport || defaultQualityReport(payload), null, 2));
   fs.writeFileSync(modelPresetsPath, JSON.stringify(modelPresets(payload), null, 2));
@@ -843,6 +846,9 @@ function promptPack(payload) {
     `Shot: ${shot}`,
     `Subject mode: ${subjectMode}`,
     `Quality score: ${quality.score}/100 (${quality.readiness})`,
+    '',
+    '## Production Edition',
+    productionDirection(planning.production),
     '',
     '## Creative Intent',
     intent,

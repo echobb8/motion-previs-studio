@@ -1,3 +1,4 @@
+import type { ProductionSettings } from './lib/production';
 // Modified for cross-platform Windows support in 2026; see MODIFICATIONS.md.
 
 export type MediaInfo = {
@@ -196,6 +197,7 @@ export type QualityReport = {
 };
 
 export type PlanningData = {
+  production?: ProductionSettings;
   projectTitle: string;
   sceneTitle: string;
   shotTitle: string;
@@ -231,6 +233,7 @@ export type ProjectSession = {
   exportPresets?: ExportPreset[] | null;
   resolution?: ExportResolution | null;
   planning?: {
+    production?: ProductionSettings;
     projectTitle?: string;
     sceneTitle?: string;
     shotTitle?: string;

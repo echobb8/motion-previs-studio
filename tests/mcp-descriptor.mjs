@@ -25,7 +25,7 @@ assert.equal(
 );
 assert.equal(
   motionDiscoveryFile({}, winOptions),
-  'D:\\Profiles\\Editor\\Roaming\\Motion Previs Studio\\v4\\control.json'
+  'D:\\Profiles\\Editor\\Roaming\\Motion Previs Studio Kids 3D\\v4\\control.json'
 );
 assert.equal(
   motionDiscoveryFile({}, { ...winOptions, env: { MOTION_PREVIS_CONFIG_DIR: 'E:\\mps-ci' } }),

@@ -1,3 +1,5 @@
+import { defaultProduction, normalizeProduction } from './lib/production';
+import { ProductionPanel } from './components/ProductionPanel';
 // Modified for cross-platform Windows support in 2026; see MODIFICATIONS.md.
 
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -161,8 +163,9 @@ export function App() {
   const [projectTitle, setProjectTitle] = useState('Motion Previs Project');
   const [sceneTitle, setSceneTitle] = useState('Scene 01');
   const [shotTitle, setShotTitle] = useState('Shot 01A');
+  const [production, setProduction] = useState(defaultProduction);
   const [creativeIntent, setCreativeIntent] = useState('Preserve the reference camera move and timing while allowing new subject design.');
-  const [visualStyle, setVisualStyle] = useState('Cinematic AI-film previs with clean blocking, controlled depth, and professional continuity.');
+  const [visualStyle, setVisualStyle] = useState('Apply the production edition with approved subject and environment references.');
   const [subjectMode, setSubjectMode] = useState<SubjectMode>('camera-only');
   const [selectedLayers, setSelectedLayers] = useState<ControlLayerKey[]>(['depth', 'ai-depth', 'pose', 'camera', 'edges', 'masks']);
   const [exportPresets, setExportPresets] = useState<ExportPreset[]>(['seedance', 'comfyui', 'blender']);
@@ -253,6 +256,7 @@ export function App() {
 
   const planningData = useMemo<PlanningData>(
     () => ({
+      production,
       projectTitle: projectTitle.trim() || 'Motion Previs Project',
       sceneTitle: sceneTitle.trim() || 'Scene 01',
       shotTitle: shotTitle.trim() || 'Shot 01A',
@@ -278,7 +282,7 @@ export function App() {
       qualityReport,
       analysisSettings: poseSettings
     }),
-    [creativeIntent, exportPresets, projectTitle, qualityReport, sceneTitle, selectedDuration, selectedLayers, shotTitle, subjectMode, useCameraMove, visualStyle, poseSettings]
+    [production, creativeIntent, exportPresets, projectTitle, qualityReport, sceneTitle, selectedDuration, selectedLayers, shotTitle, subjectMode, useCameraMove, visualStyle, poseSettings]
   );
 
   function pushToast(text: string, tone: 'ok' | 'error' = 'ok') {
@@ -298,6 +302,7 @@ export function App() {
     if (session.selectedLayers?.length) setSelectedLayers(session.selectedLayers);
     if (session.exportPresets?.length) setExportPresets(session.exportPresets);
     if (session.resolution) setResolution(session.resolution);
+    setProduction(normalizeProduction(session.planning?.production));
     if (session.planning?.projectTitle) setProjectTitle(session.planning.projectTitle);
     if (session.planning?.sceneTitle) setSceneTitle(session.planning.sceneTitle);
     if (session.planning?.shotTitle) setShotTitle(session.planning.shotTitle);
@@ -317,6 +322,7 @@ export function App() {
     exportPresets,
     resolution,
     planning: {
+      production,
       projectTitle,
       sceneTitle,
       shotTitle,
@@ -324,7 +330,7 @@ export function App() {
       visualStyle
     },
     lastBundlePath: exportResult?.outputDir ?? null
-  }), [source, range, sampleFps, subjectMode, poseSettings, useCameraMove, selectedLayers, exportPresets, resolution, projectTitle, sceneTitle, shotTitle, creativeIntent, visualStyle, exportResult]);
+  }), [production, source, range, sampleFps, subjectMode, poseSettings, useCameraMove, selectedLayers, exportPresets, resolution, projectTitle, sceneTitle, shotTitle, creativeIntent, visualStyle, exportResult]);
 
   async function saveProject() {
     try {
@@ -982,6 +988,7 @@ export function App() {
           </div>
           <label className="control-label">
             Intent
+            <ProductionPanel value={production} onChange={setProduction} />
             <textarea className="textarea-field" value={creativeIntent} onChange={(event) => setCreativeIntent(event.target.value)} disabled={busy} rows={2} />
           </label>
         </section>
